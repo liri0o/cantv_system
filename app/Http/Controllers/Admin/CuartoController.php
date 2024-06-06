@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Circuito;
 use App\Models\Cuarto;
-use App\Models\Statu;
+use App\Models\Necesidad;
+use App\Models\Servred;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CuartoController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      */
@@ -38,8 +42,11 @@ class CuartoController extends Controller
      * Display the specified resource.
      */
     public function show(Cuarto $cuarto)
-    {
-        //
+    {        
+         $circuitos = Circuito::where('cuarto_id','=',$cuarto->id)->get();         
+         $servreds = Servred::where('cuarto_id','=',$cuarto->id)->get();         
+         $necesidads = Necesidad::where('cuarto_id','=',$cuarto->id)->get();         
+        return view('admin.cuartos.show', compact('cuarto','circuitos','servreds', 'necesidads'));
     }
 
     /**
@@ -47,7 +54,8 @@ class CuartoController extends Controller
      */
     public function edit(Cuarto $cuarto)
     {
-        //
+        
+        return view('admin.cuartos.edit', compact('cuarto', ));
     }
 
     /**
@@ -63,6 +71,18 @@ class CuartoController extends Controller
      */
     public function destroy(Cuarto $cuarto)
     {
-        //
+        Storage::delete($cuarto->photo_1);
+        Storage::delete($cuarto->photo_2);        
+
+        $cuarto->delete();
+
+        session()->flash('swal', [
+            'icon' => 'success',
+            'title' => '¡¡Listo!!',
+            'text' => ' Cuarto eliminado correctamente.'
+        ]);
+        
+        return redirect()->route('admin.cuartos.index');
+
     }
 }

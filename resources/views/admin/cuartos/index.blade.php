@@ -21,7 +21,13 @@
                             ID
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Nombre del cuarto
+                            Estado
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Localidad
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Ubicación del cuarto
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Jefe
@@ -29,6 +35,7 @@
                         <th scope="col" class="px-6 py-3">
                             Status
                         </th>
+                       
                         <th scope="col" class="px-6 py-3">
                             Accion
                         </th>
@@ -42,6 +49,12 @@
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{ $cuarto->id }}
                             </th>
+                             <td class="px-6 py-4">
+                                {{ $cuarto->localidad->estado->name }}
+                            </td>
+                             <td class="px-6 py-4">
+                                {{ $cuarto->localidad->name }}
+                            </td>
                             <td class="px-6 py-4">
                                 {{ $cuarto->name }}
                             </td>
@@ -51,8 +64,14 @@
                             <td class="px-6 py-4">
                                 {{ $cuarto->status }}
                             </td>
+                           
                             <td class="px-6 py-4">
-                                <a href="{{ route('admin.cuartos.edit', $cuarto) }}">Editar</a>
+                                <x-button class="mr-2 bg-blue-700">
+                                    <a href="{{ route('admin.cuartos.edit', $cuarto) }}">Editar</a>
+                                </x-button>
+                                <x-button class="bg-green-800">
+                                    <a href="{{ route('admin.cuartos.show', $cuarto) }}">Ver</a>
+                                </x-button>
                             </td>
                         </tr>
                     @endforeach
@@ -60,7 +79,7 @@
             </table>
         </div>
         <div class="mt-4">
-            {{ $cuarto->links() }}
+            {{ $cuartos->links() }}
         </div>
     @else
         <div class="flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"

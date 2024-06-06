@@ -20,3 +20,6 @@ class Servoz extends Model
          return $this->belongsTo(Cuarto::class);
      } */
 }
+
+//   
+

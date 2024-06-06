@@ -17,13 +17,15 @@ class Servred extends Model
         'code_inv',
         'cant_puertos_dis',
         'cant_ports_oc',
-        'cant_ports_total'
-    ];
-
-
+        'cant_ports_total',
+        'description',
+        'image_path',
+        'cuarto_id'
+    ];    
+    
     //Relacion de pertenencia con Cuartos
-   /*  public function cuarto()
+    public function cuarto()
     {
         return $this->belongsTo(Cuarto::class);
-    } */
+    } 
 }

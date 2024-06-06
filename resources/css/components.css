@@ -1,3 +1,7 @@
 .card{
-    @apply bg-white rounded-lg shadow p-6;
+    @apply bg-gray-100 rounded-lg shadow p-6;
+}
+
+.bord{
+    @apply p-4 border-2 border-gray-200 border-solid rounded-lg dark:border-gray-700
 }

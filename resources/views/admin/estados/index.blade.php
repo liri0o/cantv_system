@@ -48,7 +48,9 @@
                                 {{ $estado->region->name }}
                             </td>
                             <td class="px-6 py-4">
+                                <x-button class="mr-2 bg-blue-700">
                                 <a href="{{ route('admin.estados.edit', $estado) }}">Editar</a>
+                                </x-button>
                             </td>
                         </tr>
                     @endforeach

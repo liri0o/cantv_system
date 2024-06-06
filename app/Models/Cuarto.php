@@ -9,7 +9,22 @@ class Cuarto extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','status', 'jefe', 'localidad_id', 'photo_1','photo_2','photo_3', 'photo_4'];
+    protected $fillable = [
+        //info general
+        'name',
+        'jefe',
+        'status', 
+        'photo_1',
+        'photo_2',     
+        
+        //serv voz     
+        'cant_tlf_total_fxb',
+        'cant_tlf_oc_fxb',
+        'cant_tlf_dis_fxb',
+        'cant_tlf_line' ,
+        
+        'localidad_id'
+    ];
 
     //Relacion de pertenencia con Localidades
     public function localidad()
@@ -17,21 +32,22 @@ class Cuarto extends Model
         return $this->belongsTo(Localidad::class);
     }
     //Relacion uno a uno con Circuitos
-    public function circuito()
+    public function circuitos()
     {
-        return $this->hasOne(Circuito::class);
-    }
-
-    //Relacion uno a uno con Servozs
-    public function servoz()
-    {
-        return $this->hasOne(Servoz::class);
+        return $this->hasMany(Circuito::class, 'cuarto_id', 'id');
     }
 
     //Relacion uno a uno con Servreds
-    public function servred()
+    public function servreds()
     {
-        return $this->hasOne(Servred::class);
+        return $this->hasMany(Servred::class);
+    }
+
+    //Relacion uno a uno con Necesidades
+    public function necesidads()
+    {
+        return $this->hasOne(Necesidad::class);
     }
     
 }
+    

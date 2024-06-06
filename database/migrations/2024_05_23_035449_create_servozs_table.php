@@ -12,19 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('servozs', function (Blueprint $table) {
-            $table->id();
-
-            $table->string('tlf_num');
-            $table->string('access_type');
-            $table->string('tlf_serial');
-            $table->string('tlf_inventario');
-            $table->string('tlf_marca');
-            $table->string('tlf_modelo');
+            $table->id();        
 
             $table->string('cant_tlf_fxb');
-            $table->string('cant_tlf_line');           
-
-           /*  $table->foreignId('cuarto_id')->constrained(); */
+            $table->string('cant_tlf_line'); 
+           
             $table->timestamps();
         });
     }

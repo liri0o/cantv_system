@@ -30,9 +30,9 @@
                         <th scope="col" class="px-6 py-3">
                             Región
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                      {{--   <th scope="col" class="px-6 py-3">
                             Accion
-                        </th>
+                        </th> --}}
 
                     </tr>
                 </thead>
@@ -52,9 +52,9 @@
                             <td class="px-6 py-4">
                                 {{ $localidad->estado->region->name }}
                             </td>
-                            <td class="px-6 py-4">
+                           {{--  <td class="px-6 py-4">
                                 <a href="{{ route('admin.localidades.edit', $localidad) }}">Editar</a>
-                            </td>
+                            </td> --}}
                         </tr>
                     @endforeach
                 </tbody>

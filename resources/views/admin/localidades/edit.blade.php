@@ -12,5 +12,8 @@
     ],
 ]">
 
-@livewire('admin.localidades.localidad-edit',  compact('localidad'))
+
+{{-- @livewire('admin.localidades.localidad-edit',  compact('localidad')) --}}
+
 </x-admin-layout>
+

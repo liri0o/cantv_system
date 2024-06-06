@@ -1,122 +1,142 @@
 <div>
-    <!-- Formulario -->
-    <div class="card">
-        <x-label class="font-semibold">Sobre el cuarto</x-label>
-        <div class="p-4 border-2 border-gray-200 border-solid rounded-lg dark:border-gray-700 ">
-            <div class="mb-4">
-                <x-label class="mb-1"> Nombre </x-label>
-                <x-input wire:model="cuarto.name" class="w-full" placeholder="Ingrese el nombre del cuarto" />
-            </div>
+    <form wire:submit="store">
+        <x-validation-errors class="mb-4" />
+        <!-- Formulario -->
+        <div class="card">
+            <x-label class="font-semibold">
+                Sobre el cuarto
+            </x-label>
+            <div class="bord">
 
-            <div class="mb-4">
-                <x-label class="mb-1"> Jefe del cuarto </x-label>
-                <x-input wire:model="cuarto.jefe" class="w-full" placeholder="Ingrese el nombre del jefe del cuarto" />
-            </div>
-            <div class="mb-4">
-                <x-label class="mb-1"> Status del cuarto </x-label>
-                <x-input wire:model="cuarto.status" class="w-full" placeholder="Ingrese el status del cuarto" />
-            </div>
+                  {{-- Selects de region - estados - localidades --}}
 
-            <div class="mb-4">
-                <x-label class="mb-1"> Regiones </x-label>
-                <x-select class="w-full" wire:model.live="region_id">
+                  <div class="mb-4">
+                    <x-label class="mb-1"> Regiones </x-label>
+                    <x-select class="w-full" wire:model.live="region_id">
 
-                    <option value="" disabled> Seleccione una region</option>
+                        <option value="" disabled> Seleccione una region</option>
 
-                    @foreach ($regions as $region)
-                        <option value="{{ $region->id }}">{{ $region->name }}</option>
-                    @endforeach
-                </x-select>
-            </div>
+                        @foreach ($regions as $region)
+                            <option value="{{ $region->id }}">{{ $region->name }}</option>
+                        @endforeach
 
-            <div class="mb-4">
-                <x-label class="mb-1"> Estados </x-label>
-                <x-select class="w-full" wire:model.live="estado_id">
+                    </x-select>
+                </div>
 
-                    <option value="" disabled> Seleccione un estado</option>
+                <div class="mb-4">
+                    <x-label class="mb-1"> Estados </x-label>
+                    <x-select class="w-full" wire:model.live="estado_id">
 
-                    @foreach ($this->estados as $estado)
-                        <option value="{{ $estado->id }}">{{ $estado->name }}</option>
-                    @endforeach
-                </x-select>
-            </div>
+                        <option value="" disabled> Seleccione un estado</option>
 
-            <div class="mb-4">
-                <x-label class="mb-1"> Localidades </x-label>
-                <x-select class="w-full" wire:model.live="cuarto.localidad_id">
+                        @foreach ($this->estados as $estado)
+                            <option value="{{ $estado->id }}">{{ $estado->name }}</option>
+                        @endforeach
+                    </x-select>
+                </div>
 
-                    <option value="" disabled> Seleccione una localidad</option>
+                <div class="mb-4">
+                    <x-label class="mb-1"> Localidades </x-label>
+                    <x-select class="w-full" wire:model.live="cuarto.localidad_id">
 
-                    @foreach ($this->localidades as $localidad)
-                        <option value="{{ $localidad->id }}">{{ $localidad->name }}</option>
-                    @endforeach
-                </x-select>
+                        <option value="" disabled> Seleccione una localidad</option>
+
+                        @foreach ($this->localidades as $localidad)
+                            <option value="{{ $localidad->id }}">{{ $localidad->name }}</option>
+                        @endforeach
+                    </x-select>
+                </div>
+
+                <div class="mb-4">
+                    <x-label class="mb-1"> Ubicación </x-label>
+                    <x-input wire:model="cuarto.name" class="w-full" placeholder="Ingrese la ubicación del cuarto" />
+                </div>
+
+                <div class="mb-4">
+                    <x-label class="mb-1"> Jefe del cuarto </x-label>
+                    <x-input wire:model="cuarto.jefe" class="w-full"
+                        placeholder="Ingrese el nombre del jefe del cuarto" />
+                </div>
+                <div class="mb-4">
+                    <x-label class="mb-1"> Status del cuarto </x-label>
+
+                    <x-select class="w-full" wire:model="cuarto.status">
+
+                        <option value="" disabled> Seleccione el status</option>
+        
+                        <option value="Visitado">Visitado</option>
+                        <option value="No Visitado">No Visitado</option>                        
+        
+                    </x-select>                    
+                </div>             
+
+            </div>                    
+
+            <x-label class="font-semibold mt-5">
+                Sobre los servicios de voz
+            </x-label>
+            <div class="bord">
+
+                <div class="mb-4">
+                    <x-label class="mb-1"> Cantidad de pares telefónicos disponibles en la FXB de la localidad
+                    </x-label>
+                    <x-input wire:model="cuarto.cant_tlf_dis_fxb" class="w-full" placeholder="Ingrese la cantidad" />
+                </div>
+
+                <div class="mb-4">
+                    <x-label class="mb-1">Cantidad de pares telefónicos ocupados en la FXB de la localidad</x-label>
+                    <x-input wire:model="cuarto.cant_tlf_oc_fxb" class="w-full"
+                        placeholder="Ingrese el serial del telefono" />
+                </div>
+
+                <div class="mb-4">
+                    <x-label class="mb-1"> Cantidad total de pares telefónicos en la FXB de la localidad </x-label>
+                    <x-input wire:model="cuarto.cant_tlf_total_fxb" class="w-full" placeholder="Ingrese la cantidad" />
+                </div>
+
+                <div class="mb-4">
+                    <x-label class="mb-1"> Cantidad de lineas telefónicas en la FXB de la localidad </x-label>
+                    <x-input wire:model="cuarto.cant_tlf_line" class="w-full" placeholder="Ingrese la cantidad " />
+                </div>
+
             </div>
         </div>
-
-    </div>
-
-
-    <!-- Seccion de registros fotográficos-->
-    <div class="card">
-        <figure class="mb-4 gap-5 p-4 ">      
-
-            <div class="relative mb-4 justify-center w-full">
-                <div class="absolute top-8 right-8">
-                    <label class="flex items-center text-sm px-4 py-2 rounded-lg bg-gray-300 cursor-pointer">
-                        <i class="fas fa-camera"> Actualizar</i>
-                        <input type="file" 
-                        accept="image/*"
-                        class="hidden" wire:model="image_1">
-                    </label>
+        <!-- Seccion de registros fotográficos-->
+        <div class="card">
+            <x-label class="font-semibold">
+                Registros fotográficos
+            </x-label>
+            <figure class="mb-4 gap-5 p-4 bord ">
+                {{-- Foto 1 --}}
+                <div class="relative mb-4 justify-center w-full">
+                    <div class="absolute top-8 right-8">
+                        <label class="flex items-center text-sm px-4 py-2 rounded-lg bg-gray-300 cursor-pointer">
+                            <i class="fas fa-camera"> Actualizar</i>
+                            <input type="file" accept="image/*" class="hidden" wire:model="photo_1">
+                        </label>
+                    </div>
+                    <img class="aspect-[3/2] w-full object-cover object-center border-2 border-gray-200 border-solid rounded-lg dark:border-gray-300"
+                        src="{{ $photo_1 ? $photo_1->temporaryUrl() : asset('img/pngtree-no-image-vector-illustration-isolated-png-image_1694547.jpg') }}"
+                        alt="">
                 </div>
-                <img class="aspect-[3/2]  object-cover object-center border-2 border-gray-200 border-solid rounded-lg dark:border-gray-300"
-                    src="{{ $image_1 ? $image_1->temporaryUrl() : asset('img/pngtree-no-image-vector-illustration-isolated-png-image_1694547.jpg') }}"
-                    alt="">
+                {{-- Foto 2 --}}
+                <div class="relative mb-4 justify-center w-full">
+                    <div class="absolute top-8 right-8">
+                        <label class="flex items-center text-sm px-4 py-2 rounded-lg bg-gray-300 cursor-pointer">
+                            <i class="fas fa-camera"> Actualizar</i>
+                            <input type="file" accept="image/*" class="hidden" wire:model="photo_2">
+                        </label>
+                    </div>
+                    <img class="aspect-[3/2] w-full object-cover object-center border-2 border-gray-200 border-solid rounded-lg dark:border-gray-300"
+                        src="{{ $photo_2 ? $photo_2->temporaryUrl() : asset('img/pngtree-no-image-vector-illustration-isolated-png-image_1694547.jpg') }}"
+                        alt="">
+                </div>         
+            </figure>
+            <div class="flex justify-end card w-full">
+                <x-button>
+                    Crear Cuarto
+                </x-button>
             </div>
-
-
-            <div class="relative mb-4">
-                <div class="absolute top-8 right-8">
-                    <label class="flex items-center text-sm px-4 py-2 rounded-lg bg-gray-300 cursor-pointer">
-                        <i class="fas fa-camera"> Actualizar</i>
-                        <input type="file" 
-                        accept="image/*"
-                        class="hidden" wire:model="image_2">
-                    </label>
-                </div>
-                <img class="aspect-[3/1] object-cover object-center border-2 border-gray-200 border-solid rounded-lg dark:border-gray-300"
-                    src="{{ $image_2 ? $image_2->temporaryUrl() : asset('img/pngtree-no-image-vector-illustration-isolated-png-image_1694547.jpg') }}"
-                    alt="">
-            </div>
-
-            <div class="relative mb-4">
-                <div class="absolute top-8 right-8">
-                    <label class="flex items-center text-sm px-4 py-2 rounded-lg bg-gray-300 cursor-pointer">
-                        <i class="fas fa-camera"> Actualizar</i>
-                        <input type="file" 
-                        accept="image/*"
-                        class="hidden" wire:model="image_3">
-                    </label>
-                </div>
-                <img class="aspect-[3/1] object-cover object-center border-2 border-gray-200 border-solid rounded-lg dark:border-gray-300"
-                    src="{{ $image_3 ? $image_3->temporaryUrl() :asset('img/pngtree-no-image-vector-illustration-isolated-png-image_1694547.jpg') }}"
-                    alt="">
-            </div>
-
-            <div class="relative mb-4">
-                <div class="absolute top-8 right-8">
-                    <label class="flex items-center text-sm px-4 py-2 rounded-lg bg-gray-300 cursor-pointer">
-                        <i class="fas fa-camera"> Actualizar</i>
-                        <input type="file" 
-                        accept="image/*"
-                        class="hidden" wire:model="image_4">
-                    </label>
-                </div>
-                <img class="aspect-[3/1] object-cover object-center border-2 border-gray-200 border-solid rounded-lg dark:border-gray-300"
-                    src="{{ $image_4 ? $image_4->temporaryUrl() : asset('img/pngtree-no-image-vector-illustration-isolated-png-image_1694547.jpg') }}"
-                    alt="">
-            </div>            
-        </figure>
-    </div>
+        </div>
+    </form>
 </div>

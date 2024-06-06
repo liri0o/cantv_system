@@ -24,7 +24,7 @@
                     Region
                 </x-label>
                 <x-select name="region_id" class="w-full">
-                    <option value=""> Seleccione un estado</option>
+                    <option value=""> Seleccione una region</option>
                     @foreach ($regions as $region)
                         <option value="{{ $region->id }}" @selected(old('region_id') == $region->id)>{{ $region->name }}</option>
                     @endforeach

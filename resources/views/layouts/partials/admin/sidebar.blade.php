@@ -30,6 +30,24 @@
             'route' => route('admin.cuartos.index'),
             'active' => request()->routeIs('admin.cuartos.*'),
         ], 
+        [
+            'name' => 'Circuitos',
+            'icon' => 'fa-solid fa-bolt',
+            'route' => route('admin.circuitos.index'),
+            'active' => request()->routeIs('admin.circuitos.*'),
+        ], 
+        [
+            'name' => 'Equipos de red',
+            'icon' => 'fa-solid fa-network-wired',
+            'route' => route('admin.servreds.index'),
+            'active' => request()->routeIs('admin.servreds.*'),
+        ], 
+        [
+            'name' => 'Necesidades',
+            'icon' => 'fa-solid fa-triangle-exclamation',
+            'route' => route('admin.necesidads.index'),
+            'active' => request()->routeIs('admin.necesidads.*'),
+        ], 
     ];
 @endphp
 

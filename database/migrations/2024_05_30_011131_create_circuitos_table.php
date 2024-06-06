@@ -14,15 +14,16 @@ return new class extends Migration
         Schema::create('circuitos', function (Blueprint $table) {
             $table->id();
             $table->string('circuito_num');
-            $table->string('enlace_type');           
-            $table->string('enlace_ipwan');
-            $table->string('enlace_iplan_bloq');
-            $table->string('meth_ip_sw');
-            $table->string('meth_vlan');
-            $table->string('meth_ip_loopback');
-            $table->string('meth_ip_wan');
+            $table->string('type');           
+            $table->string('ipwan');
+            $table->string('iplan_bloq');
+            $table->string('ip_sw');
+            $table->string('vlan');
+            $table->string('ip_loopback');
+            $table->string('description')->nullable();
+            $table->string('image_path');
             
-            /* $table->foreignId('cuarto_id')->constrained(); */
+            $table->foreignId('cuarto_id')->constrained(); 
             $table->timestamps();
         });
     }

@@ -21,9 +21,11 @@ return new class extends Migration
             $table->string('code_inv');             
             $table->string('cant_puertos_dis');
             $table->string('cant_ports_oc');         
-            $table->string('cant_ports_total');     
+            $table->string('cant_ports_total');
+            $table->string('description')->nullable();   
+            $table->string('image_path');   
             
-           /*  $table->foreignId('cuarto_id')->constrained(); */
+            $table->foreignId('cuarto_id')->constrained();
             $table->timestamps();
         });
     }

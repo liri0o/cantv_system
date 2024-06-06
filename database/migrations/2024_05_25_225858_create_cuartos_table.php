@@ -13,14 +13,20 @@ return new class extends Migration
     {
         Schema::create('cuartos', function (Blueprint $table) {
             $table->id();
-            
+            //info general
             $table->string('name');
             $table->string('jefe');            
             $table->string('status');            
             $table->string('photo_1');
-            $table->string('photo_2');
-            $table->string('photo_3');
-            $table->string('photo_4');
+            $table->string('photo_2');           
+
+            //servoz info
+            $table->unsignedInteger('cant_tlf_total_fxb');
+            $table->unsignedInteger('cant_tlf_oc_fxb');
+            $table->unsignedInteger('cant_tlf_dis_fxb');
+            $table->unsignedInteger('cant_tlf_line');             
+
+
             
             $table->foreignId('localidad_id')->constrained();                       
         
@@ -36,3 +42,5 @@ return new class extends Migration
         Schema::dropIfExists('cuartos');
     }
 };
+
+//servred

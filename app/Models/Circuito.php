@@ -10,19 +10,21 @@ class Circuito extends Model
     use HasFactory;
 
     protected $fillable = [
-        'enlace_type',
-        'circuito_num',
-        'enlace_ipwan',
-        'enlace_iplan_bloq',
-        'meth_ip_sw',
-        'meth_vlan',
-        'meth_ip_loopback',
-        'meth_ip_wan'
+      'circuito_num',
+      'type',
+      'ipwan',
+      'iplan_bloq',
+      'ip_sw',
+      'vlan',
+      'ip_loopback',
+      'description',
+      'image_path',
+      'cuarto_id'
     ];
 
-    //Relacion de pertenencia con Cuartos
-   /*  public function cuarto()
+      //Relacion de pertenencia con Cuartos
+    public function cuarto()
     {
-        return $this->belongsTo(Cuarto::class);
-    }*/
-} 
+        return $this->belongsTo(Cuarto::class, 'cuarto_id', 'id');
+    }
+}
