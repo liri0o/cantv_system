@@ -24,7 +24,7 @@
                 </figure>
 
                 <div class="text-sm">
-                    {{ $circuito->description }}
+                    {{ $circuito->short_description }}
                 </div>
             </div>
 
@@ -72,6 +72,9 @@
                 <h1 class="mb-2 text-semi-bold">
                     IP LoopBack: {{ $circuito->ip_loopback }}
                 </h1>
+                <h1 class="mb-2 text-semi-bold">
+                    Descripción del circuito: {{ $circuito->description }}
+                </h1>                
             </div>
 
             <div class="col-span"></div>

@@ -11,3 +11,4 @@ class Navigation extends Component
         return view('livewire.navigation');
     }
 }
+

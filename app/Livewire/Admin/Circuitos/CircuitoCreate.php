@@ -33,6 +33,7 @@ class CircuitoCreate extends Component
       'vlan' => '',
       'ip_loopback' => '',
       'description' => '',
+      'short_description' => '',
       'image_path' => '',
       'cuarto_id' => ''
     ];
@@ -88,6 +89,7 @@ class CircuitoCreate extends Component
             'circuito.vlan' => 'required|max:255',
             'circuito.ip_loopback' => 'required|max:255',
             'circuito.description' => 'required|max:500',
+            'circuito.short_description' => 'required|max:30',
             'circuito.cuarto_id' => 'required|exists:cuartos,id'
          ]);                   
     

@@ -8,11 +8,13 @@
     ],
 ]">
 
-    <x-slot name="action">
-        <a class="btn btn-green" href="{{ route('admin.estados.create') }}">
-            Añadir
-        </a>
-    </x-slot>
+@role('admin|root')
+        <x-slot name="action">
+            <a class="btn btn-green" href="{{ route('admin.estados.create') }}">
+                Añadir
+            </a>
+        </x-slot>
+    @endrole
 
     @if ($estados->count())
         <div class="relative overflow-x-auto">
@@ -49,7 +51,7 @@
                             </td>
                             <td class="px-6 py-4">
                                 <x-button class="mr-2 bg-blue-700">
-                                <a href="{{ route('admin.estados.edit', $estado) }}">Editar</a>
+                                    <a href="{{ route('admin.estados.edit', $estado) }}">Editar</a>
                                 </x-button>
                             </td>
                         </tr>
@@ -58,7 +60,7 @@
             </table>
         </div>
         <div class="mt-4">
-            {{ $estados->links()}}
+            {{ $estados->links() }}
         </div>
     @else
         <div class="flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
@@ -73,6 +75,6 @@
                 <span class="font-medium">Info alert!!</span> No se ha registrado ningún estado aún.
             </div>
         </div>
-    @endif  
+    @endif
 
 </x-admin-layout>

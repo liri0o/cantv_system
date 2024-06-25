@@ -43,9 +43,9 @@
                 </x-secondary-button>
 
                 @if ($this->user->profile_photo_path)
-                    <x-secondary-button type="button" class="mt-2" wire:click="deleteProfilePhoto">
+                    <x-danger-button type="button" class="mt-2" wire:click="deleteProfilePhoto">
                         {{ __('Remove Photo') }}
-                    </x-secondary-button>
+                    </x-danger-button>
                 @endif
 
                 <x-input-error for="photo" class="mt-2" />
@@ -90,6 +90,9 @@
 
         <x-button wire:loading.attr="disabled" wire:target="photo">
             {{ __('Save') }}
+        </x-button>
+        <x-button class="ml-2">
+            <a href="{{route('dashboard')}}">{{ __('Volver al inicio') }}</a>
         </x-button>
     </x-slot>
 </x-form-section>

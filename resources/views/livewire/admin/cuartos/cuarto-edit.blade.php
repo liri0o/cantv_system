@@ -2,12 +2,12 @@
     <form wire:submit="store">
         <x-validation-errors class="mb-4" />
         <!-- Formulario -->
-        <div class="card">
-            <x-label class="font-semibold">
-                Sobre el cuarto
-            </x-label>
-            <div class="bord">
-                
+        <div>
+
+            <x-label class="text-xl text-bold mb-2">Sobre la pertenencia del cuarto</x-label>
+
+            <div class="card bg-gray-300 mb-6">
+
                 {{-- Selects de region - estados - localidades --}}
 
                 <div class="mb-4">
@@ -47,9 +47,15 @@
                     </x-select>
                 </div>
 
+            </div>
+
+            <x-label class="text-xl text-bold mb-2">Sobre el cuarto</x-label>
+            <div class="card bg-gray-300 mb-6">
+
                 <div class="mb-4">
                     <x-label class="mb-1"> Ubicación del cuarto </x-label>
-                    <x-input wire:model="cuartoEdit.name" class="w-full" placeholder="Ingrese la ubicación del cuarto" />
+                    <x-input wire:model="cuartoEdit.name" class="w-full"
+                        placeholder="Ingrese la ubicación del cuarto" />
                 </div>
 
                 <div class="mb-4">
@@ -70,13 +76,19 @@
                     </x-select>
                 </div>
 
+                <div class="mb-4">
+                    <x-label class="mb-1"> Descripcion del cuarto </x-label>
+                    <x-textarea wire:model="cuartoEdit.description" class="w-full resize-none h-60"
+                        placeholder="Ingrese una descripción sobre el cuarto">
+                    </x-textarea>
+                </div>
 
             </div>
 
-            <x-label class="font-semibold mt-5">
-                Sobre los servicios de voz
+            <x-label class="text-xl text-bold mb-2">
+                Sobre los servicios de voz del cuarto
             </x-label>
-            <div class="bord">
+            <div class="card bg-gray-300 mb-6">
 
                 <div class="mb-4">
                     <x-label class="mb-1"> Cantidad de pares telefónicos disponibles en la FXB de la localidad
@@ -105,18 +117,17 @@
             </div>
         </div>
 
-        <!-- Seccion de registros fotográficos-->
-        <div class="card">
-            <x-label class="font-semibold">
-                Registros fotográficos
-            </x-label>
-            <figure class="mb-4 gap-5 p-4 bord ">
 
+        <!-- Seccion de registros fotográficos-->
+        <x-label class="text-xl text-bold mb-2">Sobre los registros fotográficos del cuarto</x-label>
+        <div class="card bg-gray-300 mb-6">          
+            <figure class="mb-2 gap-5 p-4">
                 {{-- Foto 1 --}}
                 <div class="relative mb-4 justify-center w-full">
                     <div class="absolute top-8 right-8">
                         <label class="flex items-center text-sm px-4 py-2 rounded-lg bg-gray-300 cursor-pointer">
-                            <i class="fas fa-camera"> Actualizar</i>
+                            <i class="fas fa-camera"></i>
+                            Actualizar foto
                             <input type="file" accept="image/*" class="hidden" wire:model="photo_1">
                         </label>
                     </div>
@@ -128,7 +139,8 @@
                 <div class="relative mb-4 justify-center w-full">
                     <div class="absolute top-8 right-8">
                         <label class="flex items-center text-sm px-4 py-2 rounded-lg bg-gray-300 cursor-pointer">
-                            <i class="fas fa-camera"> Actualizar</i>
+                            <i class="fas fa-camera"></i>
+                            Actualizar foto
                             <input type="file" accept="image/*" class="hidden" wire:model="photo_2">
                         </label>
                     </div>
@@ -136,7 +148,7 @@
                         src="{{ $photo_2 ? $photo_2->temporaryUrl() : Storage::url($cuartoEdit['photo_2']) }}"
                         alt="">
                 </div>
-               
+
             </figure>
             <div class="flex justify-end space-x-2">
 

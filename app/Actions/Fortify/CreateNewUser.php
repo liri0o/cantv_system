@@ -31,5 +31,11 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
+        
+        session()->flash('swal' , [
+            'icon' => 'success',
+            'title' => '¡¡Se ha registrado correctamente.!!',
+            'text' => 'Para ingresar al sistema pongase en contacto con el proveedor.'
+        ]);
     }
 }

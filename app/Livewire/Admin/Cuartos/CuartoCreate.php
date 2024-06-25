@@ -28,6 +28,7 @@ class CuartoCreate extends Component
         'photo_1' => '',
         'photo_2' => '',     
         'localidad_id' => '',   
+        'description' => '',   
     
         //serv voz     
         'cant_tlf_total_fxb' => '',
@@ -84,6 +85,7 @@ class CuartoCreate extends Component
             'cuarto.name' => 'required|max:255',
             'cuarto.jefe' => 'required|max:255',
             'cuarto.status' => 'max:15',           
+            'cuarto.description' => 'max:255',           
             'cuarto.localidad_id' => 'required|exists:localidads,id', 
            
             //serv voz
@@ -100,7 +102,7 @@ class CuartoCreate extends Component
         session()->flash('swal' , [
             'icon' => 'success',
             'title' => '¡¡Listo!!',
-            'text' => 'Cuarto creada satisfactoriamente.'
+            'text' => 'Cuarto creado satisfactoriamente.'
         ]);
 
         return redirect()->route('admin.cuartos.index');

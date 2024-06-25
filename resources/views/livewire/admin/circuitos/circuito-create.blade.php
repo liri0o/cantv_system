@@ -1,26 +1,28 @@
 <div>
     <form wire:submit="store">   
 
-    <x-label class="font-semibold">
-        Fotografía del Circuito
-    </x-label>
+    <x-label class="text-xl text-bold mb-2">Fotografía del circuito</x-label>
     {{-- figure de la fotografia --}}
-    <figure  class="mb-4">
-        <div class="relative mb-4 justify-center w-full">
-            <div class="absolute top-8 right-8">
-                <label class="flex items-center text-sm px-4 py-2 rounded-lg bg-gray-300 cursor-pointer">
-                    <i class="fas fa-camera mr-2"> </i>
-                    Actualizar foto
-                    <input type="file" accept="image/*" class="hidden" wire:model="image_path">
-                </label>
+    <div class="card bg-gray-300 mb-6">
+        <figure  class="mb-4">
+            <div class="relative mb-4 justify-center w-full">
+                <div class="absolute top-8 right-8">
+                    <label class="flex items-center text-sm px-4 py-2 rounded-lg bg-gray-300 cursor-pointer">
+                        <i class="fas fa-camera mr-2"> </i>
+                        Agregar fotografía
+                        <input type="file" accept="image/*" class="hidden" wire:model="image_path">
+                    </label>
+                </div>
+                <img class="aspect-[3/2] w-full object-cover object-center border-2 border-gray-200 border-solid rounded-lg dark:border-gray-300"
+                    src="{{ $image_path ? $image_path->temporaryUrl() : asset('img/pngtree-no-image-vector-illustration-isolated-png-image_1694547.jpg') }}"
+                    alt="">
             </div>
-            <img class="aspect-[3/2] w-full object-cover object-center border-2 border-gray-200 border-solid rounded-lg dark:border-gray-300"
-                src="{{ $image_path ? $image_path->temporaryUrl() : asset('img/pngtree-no-image-vector-illustration-isolated-png-image_1694547.jpg') }}"
-                alt="">
-        </div>
-    </figure>
+        </figure>
+    </div>    
     <x-validation-errors class="mb-4" />
-    <div class="card">
+
+    <x-label class="text-xl text-bold mb-2">Sobre el circuito</x-label>
+    <div class="card bg-gray-300 mb-6">
         {{-- INPUTS --}}
         <div class="mb-4">
             <x-label class="mb-1">Tipo de circuito</x-label>
@@ -74,6 +76,14 @@
                 placeholder="Ingrese una descripción sobre el circuito">
             </x-textarea>
         </div>
+        <div class="mb-4">
+            <x-label class="mb-1"> Descripcion corta del circuito </x-label>
+            <x-input wire:model="circuito.short_description" class="w-full" placeholder="Ingrese una descripción corta del circuito" />
+        </div>
+        
+    </div>
+    <x-label class="text-xl text-bold mb-2">Sobre la pertenencia del circuito</x-label>
+    <div class="card bg-gray-300 mb-6">
 
         {{-- Selects --}}
         <div class="mb-4">
@@ -107,7 +117,7 @@
 
         <div class="mb-4">
             <x-label class="mb-1">
-                Cuarto
+                Cuartos
             </x-label>
             <x-select class="w-full" wire:model.live="circuito.cuarto_id">
 
@@ -117,27 +127,14 @@
                 @endforeach
 
             </x-select>
-        </div>
+        </div>      
 
-        {{-- <div class="mb-4">
-            <x-label class="mb-1">
-                Cuartos
-            </x-label>
-            <x-select class="w-full" wire:model.live="cuarto_id">
-
-                <option value="" disabled> Seleccione un cuarto </option>
-                @foreach ($this->cuartos as $cuarto)
-                    <option value="{{ $cuarto->id }}">{{ $cuarto->name }}</option>
-                @endforeach
-
-            </x-select>
-        </div> --}}
-
-        <div class="flex justify-end card w-full">
+        <div class="flex justify-end w-full">
             <x-button>
                 Crear Circuito
             </x-button>
         </div>
+        
     </div>
 
     </form> 

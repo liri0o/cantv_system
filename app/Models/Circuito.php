@@ -18,6 +18,7 @@ class Circuito extends Model
       'vlan',
       'ip_loopback',
       'description',
+      'short_description',
       'image_path',
       'cuarto_id'
     ];

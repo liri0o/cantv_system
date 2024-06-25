@@ -26,6 +26,6 @@ class Servred extends Model
     //Relacion de pertenencia con Cuartos
     public function cuarto()
     {
-        return $this->belongsTo(Cuarto::class);
+        return $this->belongsTo(Cuarto::class, 'cuarto_id', 'id');
     } 
 }

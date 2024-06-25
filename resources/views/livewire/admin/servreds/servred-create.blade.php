@@ -1,28 +1,30 @@
 <div>
     <form wire:submit="store">
 
-        <x-label class="font-semibold">
-            Fotografía del Equipo
-        </x-label>
-        {{-- figure de la fotografia --}}
-        <figure  class="mb-4">
-            <div class="relative mb-4 justify-center w-full">
-                <div class="absolute top-8 right-8">
-                    <label class="flex items-center text-sm px-4 py-2 rounded-lg bg-gray-300 cursor-pointer">
-                        <i class="fas fa-camera mr-2"> </i>
-                        Actualizar foto
-                        <input type="file" accept="image/*" class="hidden" wire:model="image_path">
-                    </label>
+        <x-label class="text-xl text-bold mb-2">Fotografía del equipo de red</x-label>
+
+        <div class="card bg-gray-300 mb-6">
+            {{-- figure de la fotografia --}}
+            <figure class="mb-4">
+                <div class="relative mb-4 justify-center w-full">
+                    <div class="absolute top-8 right-8">
+                        <label class="flex items-center text-sm px-4 py-2 rounded-lg bg-gray-300 cursor-pointer">
+                            <i class="fas fa-camera mr-2"> </i>
+                            Añadir fotografía
+                            <input type="file" accept="image/*" class="hidden" wire:model="image_path">
+                        </label>
+                    </div>
+                    <img class="aspect-[3/2] w-full object-cover object-center border-2 border-gray-200 border-solid rounded-lg dark:border-gray-300"
+                        src="{{ $image_path ? $image_path->temporaryUrl() : asset('img/pngtree-no-image-vector-illustration-isolated-png-image_1694547.jpg') }}"
+                        alt="">
                 </div>
-                <img class="aspect-[3/2] w-full object-cover object-center border-2 border-gray-200 border-solid rounded-lg dark:border-gray-300"
-                    src="{{ $image_path ? $image_path->temporaryUrl() : asset('img/pngtree-no-image-vector-illustration-isolated-png-image_1694547.jpg') }}"
-                    alt="">
-            </div>
-        </figure>
+            </figure>
+        </div>
+
         <x-validation-errors class="mb-4" />
 
-        {{-- INPUTS --}}
-        <div class="card">
+        <x-label class="text-xl text-bold mb-2">Sobre el equipo de red</x-label>
+        <div class="card bg-gray-300 mb-6">
             {{-- INPUTS --}}
             <div class="mb-4">
                 <x-label class="mb-1">
@@ -94,6 +96,9 @@
                     placeholder="Ingrese una descripción sobre el circuito">
                 </x-textarea>
             </div>
+        </div>
+        <x-label class="text-xl text-bold mb-2">Sobre la pertenencia del equipo de red</x-label>
+        <div class="card bg-gray-300 mb-6">
             {{-- SELECTS ANIDADOS DE ASIGNACION --}}
             <div class="mb-4">
                 <x-label class="mb-1">
@@ -136,12 +141,11 @@
                 </x-select>
             </div>
 
-            <div class="flex justify-end card w-full">
+            <div class="flex justify-end w-full">
                 <x-button>
                     Crear Equipo
-                </x-button>            
+                </x-button>
             </div>
-
         </div>
     </form>
 </div>

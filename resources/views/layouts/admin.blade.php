@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+   
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -17,6 +18,13 @@
     <script src="https://kit.fontawesome.com/af4ea00356.js" crossorigin="anonymous"></script>
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    {{-- <!-- datatable -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+    <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script> --}}
 
     <!-- Styles -->
     @livewireStyles
@@ -35,7 +43,7 @@
     </div>
 
     @include('layouts.partials.admin.navigation')
-    @include('layouts.partials.admin.sidebar')
+    @include('layouts.partials.admin.siderbar')
 
     <div class="p-4 sm:ml-64">
         <div class= "mt-14">
@@ -49,7 +57,7 @@
                 @endisset
 
             </div>
-            <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+            <div class="p-4 rounded-lg ">
                 {{ $slot }}
             </div>
         </div>
@@ -66,7 +74,7 @@
     @endif
 
     <script>
-        Livewire.on('swal', data=> {
+        Livewire.on('swal', data => {
             Swal.fire(data[0]);
         });
     </script>

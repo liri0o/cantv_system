@@ -7,12 +7,13 @@
         'name' => 'Equipos de red',
     ],
 ]">
-
-    <x-slot name="action">
-        <a class="btn btn-green" href="{{ route('admin.servreds.create') }}">
-            Añadir
-        </a>
-    </x-slot>
+    @role('admin')
+        <x-slot name="action">
+            <a class="btn btn-green" href="{{ route('admin.servreds.create') }}">
+                Añadir
+            </a>
+        </x-slot>
+    @endrole
 
     @if ($servreds->count())
         <div class="relative overflow-x-auto">
@@ -72,7 +73,7 @@
                                 <x-button class="bg-green-800">
                                     <a href="{{ route('admin.servreds.show', $servred) }}">Ver</a>
                                 </x-button>
-                                
+
                             </td>
                         </tr>
                     @endforeach

@@ -14,7 +14,7 @@ class ServredController extends Controller
      * Display a listing of the resource.
      */
     public function index()    
-    {        
+    {       
 
         $servreds = Servred::paginate();
         return view('admin.servreds.index', compact('servreds'));

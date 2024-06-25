@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('jefe');            
             $table->string('status');            
+            $table->string('description')->nullable();  //listo          
             $table->string('photo_1');
             $table->string('photo_2');           
 
@@ -24,12 +25,9 @@ return new class extends Migration
             $table->unsignedInteger('cant_tlf_total_fxb');
             $table->unsignedInteger('cant_tlf_oc_fxb');
             $table->unsignedInteger('cant_tlf_dis_fxb');
-            $table->unsignedInteger('cant_tlf_line');             
-
-
+            $table->unsignedInteger('cant_tlf_line');   
             
-            $table->foreignId('localidad_id')->constrained();                       
-        
+            $table->foreignId('localidad_id')->constrained();                      
             $table->timestamps();
         });
     }

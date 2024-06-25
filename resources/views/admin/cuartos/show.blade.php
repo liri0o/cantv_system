@@ -23,6 +23,10 @@
                     <img class="aspect-[3/2] w-full object-cover object-center border-2 border-gray-200 border-solid rounded-lg dark:border-gray-300"
                         src="{{ Storage::url($cuarto['photo_2']) }}" alt="">
                 </figure>
+
+                <div class="text-sm">
+                    {{ $cuarto->description }}
+                </div>
             </div>
 
             <div class="col-span-1 card bg-gray-300">
@@ -69,59 +73,110 @@
                     Circuitos del cuarto:
                 </h1>
 
-                @foreach ($circuitos as $circuito)
-                    <div class="card mb-2">
-                        <h2 class="mb-2 ">Datos del circuito:</h2>
-                        <h2 class="mb-1 text-semi-bold">
-                            Tipo de circuito: {{ $circuito->type }}
-                        </h2>
-                        <h2 class=" text-semi-bold mb-2 ">
-                            Número de circuito: {{ $circuito->circuito_num }}                         
-                        </h2>
-                        <div class="flex justify-end w-full">
-                            <x-button>
-                                <a href="{{ route('admin.circuitos.show', $circuito) }}">Ver detalles</a>
-                            </x-button>                           
-                        </div>                      
+                @if (count($circuitos) > 0)
+                    @foreach ($circuitos as $circuito)
+                        <div class="card mb-2">
+                            <h2 class="mb-2 ">Datos del circuito:</h2>
+                            <h2 class="mb-1 text-semi-bold">
+                                Tipo de circuito: {{ $circuito->type }}
+                            </h2>
+                            <h2 class=" text-semi-bold mb-2 ">
+                                Número de circuito: {{ $circuito->circuito_num }}
+                            </h2>
+                            <div class="flex justify-end w-full">
+                                <x-button>
+                                    <a href="{{ route('admin.circuitos.show', $circuito) }}">Ver detalles</a>
+                                </x-button>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <div class="flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
+                        role="alert">
+                        <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                        </svg>
+                        <span class="sr-only">Info</span>
+                        <div>
+                            <span class="font-medium">Info alert!!</span> Este cuarto no tiene ningún circuito
+                            relacionado.
+                        </div>
                     </div>
-                @endforeach
+                @endif
+
+
+
 
                 <h1 class="mb-2 text-semi-bold">
                     Equipos de red del cuarto:
                 </h1>
-
-                @foreach ($servreds as $servred)
-                    <div class="card mb-2">
-                        <h2 class="mb-2 ">Datos del equipo de red:</h2>
-                        <h2 class="mb-1 text-semi-bold">
-                            Tipo del equipo: {{ $servred->equip_type }}
-                        </h2>
-                        <h2 class=" text-semi-bold mb-2">
-                           Serial del equipo: {{ $servred->equip_serial }}
-                        </h2>
-                        <div class="flex justify-end w-full">
-                            <x-button >
-                                <a href="{{ route('admin.servreds.show', $servred) }}">Ver detalles</a>
-                            </x-button>                           
+                @if (count($servreds) > 0)
+                    @foreach ($servreds as $servred)
+                        <div class="card mb-2">
+                            <h2 class="mb-2 ">Datos del equipo de red:</h2>
+                            <h2 class="mb-1 text-semi-bold">
+                                Tipo del equipo: {{ $servred->equip_type }}
+                            </h2>
+                            <h2 class=" text-semi-bold mb-2">
+                                Serial del equipo: {{ $servred->equip_serial }}
+                            </h2>
+                            <div class="flex justify-end w-full">
+                                <x-button>
+                                    <a href="{{ route('admin.servreds.show', $servred) }}">Ver detalles</a>
+                                </x-button>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <div class="flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
+                        role="alert">
+                        <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                        </svg>
+                        <span class="sr-only">Info</span>
+                        <div>
+                            <span class="font-medium">Info alert!!</span> Este cuarto no tiene ningún equipo de red
+                            relacionado.
                         </div>
                     </div>
-                    
-                @endforeach
+
+                @endif
 
                 <h1 class="mb-2 text-semi-bold">
                     Necesidades del cuarto:
                 </h1>
+
+                @if (count($necesidads) > 0)                   
+               
                 @foreach ($necesidads as $necesidad)
-                <div class="card mb-2">
-                    <h2 class="mb-2 ">Necesidad del cuarto {{$necesidad->cuarto->name}}</h2>                   
-                    <div class="flex justify-end w-full">
-                        <x-button >
-                            <a href="{{ route('admin.necesidads.show', $necesidad) }}">Ver detalles</a>
-                        </x-button>                           
+                    <div class="card mb-2">
+                        <h2 class="mb-2 ">Necesidad del cuarto {{ $necesidad->cuarto->name }}</h2>
+                        <div class="flex justify-end w-full">
+                            <x-button>
+                                <a href="{{ route('admin.necesidads.show', $necesidad) }}">Ver detalles</a>
+                            </x-button>
+                        </div>
+                    </div>
+                @endforeach
+                @else
+                <div class="flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
+                    role="alert">
+                    <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                    </svg>
+                    <span class="sr-only">Info</span>
+                    <div>
+                        <span class="font-medium">Info alert!!</span> Este cuarto no tiene ninguna necesidad
+                        relacionada.
                     </div>
                 </div>
-                
-            @endforeach
+                @endif
 
             </div>
             <div class="col-span"></div>

@@ -7,11 +7,14 @@
         'name' => 'Cuartos',
     ],
 ]">
-    <x-slot name="action">
-        <a class="btn btn-green" href="{{ route('admin.cuartos.create') }}">
-            Añadir
-        </a>
-    </x-slot>
+
+@role('admin|root')
+        <x-slot name="action">
+            <a class="btn btn-green" href="{{ route('admin.cuartos.create') }}">
+                Añadir
+            </a>
+        </x-slot>
+    @endrole
     @if ($cuartos->count())
         <div class="relative overflow-x-auto">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -35,7 +38,7 @@
                         <th scope="col" class="px-6 py-3">
                             Status
                         </th>
-                       
+
                         <th scope="col" class="px-6 py-3">
                             Accion
                         </th>
@@ -49,10 +52,10 @@
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{ $cuarto->id }}
                             </th>
-                             <td class="px-6 py-4">
+                            <td class="px-6 py-4">
                                 {{ $cuarto->localidad->estado->name }}
                             </td>
-                             <td class="px-6 py-4">
+                            <td class="px-6 py-4">
                                 {{ $cuarto->localidad->name }}
                             </td>
                             <td class="px-6 py-4">
@@ -64,7 +67,7 @@
                             <td class="px-6 py-4">
                                 {{ $cuarto->status }}
                             </td>
-                           
+
                             <td class="px-6 py-4">
                                 <x-button class="mr-2 bg-blue-700">
                                     <a href="{{ route('admin.cuartos.edit', $cuarto) }}">Editar</a>

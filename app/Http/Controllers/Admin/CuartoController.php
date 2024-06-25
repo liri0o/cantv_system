@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 class CuartoController extends Controller
 {
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -26,7 +26,7 @@ class CuartoController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {       
+    {
         return view('admin.cuartos.create');
     }
 
@@ -42,11 +42,11 @@ class CuartoController extends Controller
      * Display the specified resource.
      */
     public function show(Cuarto $cuarto)
-    {        
-         $circuitos = Circuito::where('cuarto_id','=',$cuarto->id)->get();         
-         $servreds = Servred::where('cuarto_id','=',$cuarto->id)->get();         
-         $necesidads = Necesidad::where('cuarto_id','=',$cuarto->id)->get();         
-        return view('admin.cuartos.show', compact('cuarto','circuitos','servreds', 'necesidads'));
+    {
+        $circuitos = Circuito::where('cuarto_id', '=', $cuarto->id)->get();
+        $servreds = Servred::where('cuarto_id', '=', $cuarto->id)->get();
+        $necesidads = Necesidad::where('cuarto_id', '=', $cuarto->id)->get();
+        return view('admin.cuartos.show', compact('cuarto', 'circuitos', 'servreds', 'necesidads'));
     }
 
     /**
@@ -54,8 +54,8 @@ class CuartoController extends Controller
      */
     public function edit(Cuarto $cuarto)
     {
-        
-        return view('admin.cuartos.edit', compact('cuarto', ));
+
+        return view('admin.cuartos.edit', compact('cuarto'));
     }
 
     /**
@@ -71,8 +71,36 @@ class CuartoController extends Controller
      */
     public function destroy(Cuarto $cuarto)
     {
+        if (count($cuarto->circuitos) > 0 || isset($cuarto->necesidads) || count($cuarto->servreds) > 0) 
+        {
+            session()->flash('swal', [
+                'icon' => 'error',
+                'title' => '¡Oh no!',
+                'text' => 'El cuarto no puede ser eliminado porque tiene uno o varios elementos asignados.'
+            ]);
+            return redirect()->route('admin.cuartos.edit', $cuarto);
+        }
+        /*  if( isset($cuarto->necesidads)){
+                session()->flash('swal' , [
+                    'icon' => 'error',
+                    'title' => '¡Oh no!',
+                    'text' => 'El cuarto no puede ser eliminado porque tiene necesidades asignados.'
+                ]);
+                return redirect()->route('admin.cuartos.edit', $cuarto);
+            } 
+            if($cuarto->servreds->count() > 0){
+                session()->flash('swal' , [
+                    'icon' => 'error',
+                    'title' => '¡Oh no!',
+                    'text' => 'El cuarto no puede ser eliminado porque tiene equipos de red asignados.'
+                ]);
+                return redirect()->route('admin.cuartos.edit', $cuarto);
+            }  
+        */
+        
+
         Storage::delete($cuarto->photo_1);
-        Storage::delete($cuarto->photo_2);        
+        Storage::delete($cuarto->photo_2);
 
         $cuarto->delete();
 
@@ -81,8 +109,7 @@ class CuartoController extends Controller
             'title' => '¡¡Listo!!',
             'text' => ' Cuarto eliminado correctamente.'
         ]);
-        
-        return redirect()->route('admin.cuartos.index');
 
+        return redirect()->route('admin.cuartos.index');
     }
 }

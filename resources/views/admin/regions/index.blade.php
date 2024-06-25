@@ -7,12 +7,13 @@
         'name' => 'Regiones',
     ],
 ]">
-
+    @role('admin|root')
     <x-slot name="action">
         <a class="btn btn-green" href="{{ route('admin.regions.create') }}" >
             Añadir
         </a>
     </x-slot>
+    @endrole
 
     @if ($regions->count())
         <div class="relative overflow-x-auto">

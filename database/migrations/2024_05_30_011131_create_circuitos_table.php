@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('vlan');
             $table->string('ip_loopback');
             $table->string('description')->nullable();
+            $table->string('short_description'); //listooo
             $table->string('image_path');
             
             $table->foreignId('cuarto_id')->constrained(); 

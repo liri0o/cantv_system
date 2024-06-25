@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Cuarto extends Model
 {
@@ -16,6 +18,7 @@ class Cuarto extends Model
         'status', 
         'photo_1',
         'photo_2',     
+        'description',     
         
         //serv voz     
         'cant_tlf_total_fxb',
@@ -25,6 +28,12 @@ class Cuarto extends Model
         
         'localidad_id'
     ];
+
+    /* protected function image(): Attribute{
+        return Attribute::make(
+            get: fn() => Storage::url($this->photo_1)
+        );
+    } */
 
     //Relacion de pertenencia con Localidades
     public function localidad()
@@ -40,13 +49,13 @@ class Cuarto extends Model
     //Relacion uno a uno con Servreds
     public function servreds()
     {
-        return $this->hasMany(Servred::class);
+        return $this->hasMany(Servred::class, 'cuarto_id', 'id');
     }
 
     //Relacion uno a uno con Necesidades
     public function necesidads()
     {
-        return $this->hasOne(Necesidad::class);
+        return $this->hasOne(Necesidad::class, 'cuarto_id', 'id');
     }
     
 }

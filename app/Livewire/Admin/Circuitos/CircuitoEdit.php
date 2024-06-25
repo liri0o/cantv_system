@@ -32,6 +32,7 @@ class CircuitoEdit extends Component
             'vlan',
             'ip_loopback',
             'description',
+            'short_description',
             'image_path',
             'cuarto_id'
         );
@@ -85,6 +86,7 @@ class CircuitoEdit extends Component
             'circuitoEdit.vlan' => 'required|max:255',
             'circuitoEdit.ip_loopback' => 'required|max:255',
             'circuitoEdit.description' => 'required|max:500',
+            'circuitoEdit.short_description' => 'required|max:30',
             'circuitoEdit.cuarto_id' => 'required|exists:cuartos,id'
          ]);  
 

@@ -12,8 +12,7 @@
     ],
 ]">
 
-
-{{-- @livewire('admin.localidades.localidad-edit',  compact('localidad')) --}}
+ @livewire('admin.localidades.localidad-edit',  ['localidad' => $localidad])
 
 </x-admin-layout>
 

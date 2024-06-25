@@ -13,27 +13,31 @@
 ]">
 
     <div class="card">
-
-
-        <x-label class="text-xl text-bold mb-2">Sobre el mantenimiento del cuarto de cableado de
-            {{ $necesidad->cuarto->name }}</x-label>
+        <x-label class="text-xl text-bold mb-2">
+            Sobre el mantenimiento del cuarto de cableado de {{ $necesidad->cuarto->name }}
+        </x-label>
         <div class="card bg-gray-300 mb-6">
 
             <h1 class="text-bold mb-2">
                 Eliminar cable innecesario (jumper-voz-data) del rack de V/D: {{$necesidad->cable_elim}}
             </h1>
+
             <h1 class="text-bold mb-2">
                 Eliminar Cajas y material de desecho: {{$necesidad->cajas_des_elim}}
             </h1>
+
             <h1 class="text-bold mb-2">
                 Eliminar y desincorporar equipos de comunicación obsoletos: {{$necesidad->elim_desin_equip_com}}
             </h1>
+
             <h1 class="text-bold mb-2">
                 Inventariar y etiquetar equipos de comunicación (Router-SW-centrales): {{$necesidad->inv_etq_equip_com}}
             </h1>
+
             <h1 class="text-bold mb-2">
                 Organizar cableado de voz y data: {{$necesidad->cable_vd_org}}
             </h1>
+
             <h1 class="text-bold mb-2">
                 Organizar cableado de electricidad:  {{$necesidad->bable_elec_org}}
             </h1>
@@ -116,13 +120,12 @@
             </h1>
             <h1 class="text-bold">
                 UPS:  {{$necesidad->ups}}
-            </h1>        
-
-
+            </h1>    
         </div>
 
-        <x-label class="text-xl text-bold mb-2">Sobre la construcción del cuarto de cableado de
-            {{ $necesidad->cuarto->name }}</x-label>
+        <x-label class="text-xl text-bold mb-2">
+            Sobre la construcción del cuarto de cableado de {{ $necesidad->cuarto->name }}
+        </x-label>
         <div class="card bg-gray-300 mb-6">
 
             <h1 class="text-bold mb-2">
@@ -131,9 +134,11 @@
             <h1 class="text-bold">
                 Cantidad de Puntos de Voz:  {{$necesidad->cant_punt_voz}}
             </h1>
+
         </div>
+
         <div class="col-span-1 w-full flex justify-end ">
-            <x-button><a href="{{ route('admin.necesidads.index') }}"> Volver </a></x-button>
+            <x-button><a href="{{ route('necesidads') }}"> Volver </a></x-button>
         </div>
     </div>
 

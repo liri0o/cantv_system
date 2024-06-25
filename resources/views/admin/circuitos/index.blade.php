@@ -8,11 +8,13 @@
     ],
 ]">
 
-    <x-slot name="action">
-        <a class="btn btn-green" href="{{ route('admin.circuitos.create') }}">
-            Añadir
-        </a>
-    </x-slot>
+    @role('admin|root')
+        <x-slot name="action">
+            <a class="btn btn-green" href="{{ route('admin.circuitos.create') }}">
+                Añadir
+            </a>
+        </x-slot>
+    @endrole
 
     @if ($circuitos->count())
         <div class="relative overflow-x-auto">
@@ -23,7 +25,13 @@
                             ID
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Número
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Tipo
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Descripción
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Cuarto
@@ -44,8 +52,15 @@
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{ $circuito->id }}
                             </th>
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {{ $circuito->circuito_num }}
+                            </th>
                             <td class="px-6 py-4">
                                 {{ $circuito->type }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $circuito->short_description }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ $circuito->cuarto->name }}
@@ -60,7 +75,7 @@
                                 <x-button class="bg-green-800">
                                     <a href="{{ route('admin.circuitos.show', $circuito) }}">Ver</a>
                                 </x-button>
-                                
+
                             </td>
                         </tr>
                     @endforeach
